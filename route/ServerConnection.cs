@@ -14,11 +14,16 @@ namespace route
     {
         HttpClient client = new HttpClient();
         string baseurl = "";
-        public ServerConnection()
+
+        public ServerConnection(string baseurl)
         {
-
-
+            if (!baseurl.StartsWith("http://"))
+            {
+                throw new ArgumentException("hibas url");
+            }
+            this.baseurl = baseurl;
         }
+
         public async Task<List<cars>> getcars()
         {
             List<cars> result = new List<cars>();
